@@ -24,3 +24,8 @@
   event_list: Event List
   admin:
     event_list: Admin Event List
+  event:
+    status:
+      draft: draft
+      public: public
+      private: private
