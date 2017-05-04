@@ -9,13 +9,18 @@ namespace :dev do
 
     10.times do |i|
       users << User.create!( :email => Faker::Internet.email, :password => "12345678")
-      puts "Generate User #{i}"
+    puts "Generate User #{i}"
     end
+
+    # (:name, :description, :friendly_id, :status, :category_id)
 
     20.times do |i|
       topic = Event.create!( :name => Faker::Cat.name,
                              :description => Faker::Lorem.paragraph,
-                             :user_id => users.sample.id )
+                             :user_id => users.sample.id ,
+                             :friendly_id => SecureRandom.uuid  ,
+                             :status => "public",
+                             :category_id => "3" )
       puts "Generate Event #{i}"
     end
   end
