@@ -16,3 +16,8 @@
       event:
         name: "活动名称"
         apdescription: "描述"
+
+  registration:
+    status:
+      pending: 报名尚未完成
+      confirmed: 报名成功

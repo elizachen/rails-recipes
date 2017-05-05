@@ -31,3 +31,9 @@
       draft: draft
       public: public
       private: private
+
+
+    registration:
+      status:
+        pending: Registration pending...
+        confirmed: Registration success

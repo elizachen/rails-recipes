@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resource :user
 
-  resources :events
+  resources :events do
+    resources :registrations
+  end
 
   namespace :admin do
     root "events#index"
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
       member do
        post :reorder
      end
-     
+
     end
     resources :users
   end
