@@ -3,7 +3,9 @@ class Admin::EventRegistrationsController < ApplicationController
 
    def index
     #  @registrations = @event.registrations.includes(:ticket).order("id DESC")
-    @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page]).per(20)
+    # @registrations = @event.registrations.includes(:ticket).order("id DESC").page(params[:page]).per(20)
+    @q = @event.registrations.ransack(params[:q])
+    @registrations = @q.result.includes(:ticket).order("id DESC").page(params[:page]).per(20)
 
     if Array(params[:statuses]).any?
       @registrations = @registrations.by_status(params[:statuses])
