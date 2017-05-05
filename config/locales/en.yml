@@ -22,6 +22,8 @@
 "en":
   hello: "Hi, %{name},capp"
   event_list: Event List
+  bulk_update: Bulk Update
+  bulk_delete: Bulk Delete
   admin:
     event_list: Admin Event List
   event:

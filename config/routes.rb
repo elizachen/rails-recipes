@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "events#index"
-    resources :events
-     resources :users
+    resources :events do
+      collection do
+        post :bulk_update
+      end
+    end
+    resources :users
   end
 
   root "events#index"
