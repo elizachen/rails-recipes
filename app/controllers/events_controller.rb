@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    # @events = Event.all
+    @events = Event.rank(:row_order).all
   end
 
   def show
