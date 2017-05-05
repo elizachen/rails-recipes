@@ -24,11 +24,17 @@
 
     <p><% Registration::STATUS.each do |s| %>
       <label><%= check_box_tag "statuses[]", s, Array(params[:statuses]).include?(s) %> <%= t(s, :scope => "registration.status") %> (<%= @event.registrations.by_status(s).size %>)</label>
-    <% end %></p>
+    <% end %>
+    </p>
 
     <p><% @event.tickets.each do |t| %>
       <label><%= check_box_tag "ticket_ids[]", t.id, Array(params[:ticket_ids]).include?(t.id.to_s) %> <%= t.name %> (<%= + @event.registrations.where( :ticket_id => t.id ).size %>)</label>
-    <% end %></p>
+    <% end %>
+    </p>
+
+   <p>
+     报名日期：<%= date_field_tag :start_on, params[:start_on] %>～<%= date_field_tag :end_on, params[:end_on] %>
+   </p>
 
     <p class="text-right">
       <%= submit_tag "送出筛选", :class => "btn btn-primary" %>
