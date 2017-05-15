@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   include RankedModel
   ranks :row_order
+  mount_uploader :logo, EventLogoUploader
 
  has_many :tickets, :dependent => :destroy
  has_many :registrations, :dependent => :destroy
