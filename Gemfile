@@ -70,7 +70,11 @@ gem 'ranked-model'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'ransack'
+
 gem 'paper_trail'
 gem 'rubyzip'
 gem "axlsx"
 gem "axlsx_rails"
+
+gem "carrierwave"
+gem "mini_magick"
