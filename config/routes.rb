@@ -31,7 +31,12 @@ Rails.application.routes.draw do
 
     end
     resources :users
+    resources :versions do
+      post :undo
+    end
   end
+
+
 
   root "events#index"
 
