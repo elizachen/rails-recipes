@@ -1,6 +1,16 @@
+<% if @event.logo.present? %>
+ <%= link_to image_tag(@event.logo.url(:thumb)), @event.logo.url, :target => "_blank" %>
+<% end %>
+
 <h1><%= @event.name %></h1>
 <h2><%= t(@event.status, :scope => "event.status") %></h2>
 <h2><%= @event.category.try(:name) %></h2>
+
+  <% if @event.images.present? %>
+    <% @event.images.each do |i| %>
+      <%= link_to image_tag(i.url(:small)), i.url %>
+    <% end %>
+  <% end %>
 
 <%= sanitize @event.description %>
 <p><%= link_to "开始报名", new_event_registration_path(@event), :class => "btn btn-primary" %></p>
