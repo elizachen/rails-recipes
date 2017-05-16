@@ -57,7 +57,7 @@
   <th>Name</th>
   <th>Status</th>
   <th>E-mail</th>
-  <th>建立时间</th>
+  <th>建立时间lalal</th>
   <th>Actions</th>
 </tr>
 <% @registrations.each do |registration| %>
@@ -75,5 +75,9 @@
   </tr>
 <% end %>
 </table>
+
+<p>
+  <%= link_to "汇出 CSV", admin_event_registrations_path(:format => :csv), :class => "btn btn-default" %>
+</p>
 
 <%= paginate @registrations %>
