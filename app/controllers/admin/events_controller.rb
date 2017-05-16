@@ -7,6 +7,38 @@ class Admin::EventsController < AdminController
 
   def show
     @event = Event.find_by_friendly_id!(params[:id])
+
+    colors = ['rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+            ]
+
+  ticket_names = @event.tickets.map { |t| t.name }
+
+  @data1 = {
+      labels: ticket_names,
+      datasets: [{
+        label: "# of Registrations",
+        data: @event.tickets.map{ |t| t.registrations.count },
+        backgroundColor: colors,
+        borderWidth: 1
+      }]
+  }
+
+     @data2 = {
+       labels: ticket_names,
+       datasets: [{
+           label: '# of Amount',
+           data:  @event.tickets.map{ |t| t.registrations.by_status("confirmed").count * t.price },
+           backgroundColor: colors,
+           borderWidth: 1
+       }]
+   }
+
+
   end
 
   def new
@@ -54,15 +86,15 @@ class Admin::EventsController < AdminController
       Array(params[:ids]).each do |event_id|
         event = Event.find(event_id)
         # event.destroy
-        # total += 1
+        # total = 1
         if params[:commit] == I18n.t(:bulk_update)
         event.status = params[:event_status]
         if event.save
-          total += 1
+          total = 1
         end
       elsif params[:commit] == I18n.t(:bulk_delete)
         event.destroy
-        total += 1
+        total = 1
       end
       end
 
